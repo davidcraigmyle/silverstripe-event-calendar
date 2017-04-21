@@ -171,7 +171,7 @@ class CalendarEvent_Controller extends Page_Controller {
 	public function UpcomingDates($limit = 3) {
 		return DataList::create($this->data()->getDateTimeClass())
 			->filter("EventID", $this->ID)
-			->where("\"StartDate\" >= DATE(NOW())")
+			->where("\"StartDate\" >= DATE(NOW()) OR \"EndDate\" >= DATE(NOW())")
 			->sort("\"StartDate\" ASC")
 			->limit($limit);
 	}
